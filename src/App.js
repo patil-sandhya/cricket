@@ -1,5 +1,5 @@
 import './App.css';
-import { Dashboard } from './Components/Dashboard';
+//import { Dashboard } from './Components/Dashboard';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Home } from './Components/Home';
 function App() {

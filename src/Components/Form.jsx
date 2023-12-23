@@ -18,7 +18,7 @@ const sendVal = (e)=>{
     <form onSubmit={sendVal}>
      
     <Input variant='filled' onChange={(e)=> setS(e.target.value)} type='number' placeholder={placeHold} />
-    <Button type="submit"  colorScheme='facebook'>Enter</Button>
+    <Button m={1} type="submit"  colorScheme='facebook'>Enter</Button>
     
     </form>
     </HStack>

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Form } from './Form'
-import { VStack, useToast } from '@chakra-ui/react'
+import { VStack, useToast, Box } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
-import CountdownTimer from './timer'
+//import CountdownTimer from './timer'
 
 export const Dashboard = () => {
     const [cur, setCur] = useState("Player 1")
@@ -45,6 +45,9 @@ useEffect(()=>{
         const t = setInterval(() => {
             setCount((prevCount) => prevCount + 1);
             console.log("time", s1, s2,count, curS1, curS2)
+            if(curS1 === curS2 && cur === "Player 1"){
+              setCount(2)
+            }
             
             if(curS1 === curS2 || count === 3){
                 if(count === 3){
@@ -60,10 +63,11 @@ useEffect(()=>{
                   })
                 }
                 if(cur === "Player 2" ){
-                    if(s1 > s2){
+                  console.log(s1, s2, curS2, s2+curS2)
+                    if(s1 > s2+curS2){
                         toast({
                             title: 'Winner!',
-                            description: "Player 1",
+                            description: `Player 1`,
                             status: 'success',
                             duration: 9000,
                             isClosable: true,
@@ -71,7 +75,7 @@ useEffect(()=>{
                        // alert("Player 1 win")
                         setCount(7)
                     }else
-                    if(s1 < s2){
+                    if(s1 < s2+curS2){
                         toast({
                             title: 'Winner!',
                             description: "Player 2",
@@ -143,11 +147,19 @@ useEffect(()=>{
       )}
     </div>
     <VStack>
-    <Heading as='h4' size='md'>
+    
+  {
+    (seconds > 0) && (<div>
+      <Heading as='h4' size='md'>
     Enter the value between 1-6
   </Heading>
-    <Form placeHold="Player 1"  handleSubmit={handleForm1}/>
-    <Form placeHold="Player 2" handleSubmit={handleForm2} />
+  <Box m={4}>
+      <Form placeHold="Player 1"  handleSubmit={handleForm1}/>
+      </Box>
+      <Box m={4}>
+    <Form placeHold="Player 2" handleSubmit={handleForm2} /></Box></div>)
+  }
+    
     </VStack>
     </div>
   )
