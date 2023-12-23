@@ -50,13 +50,13 @@ useEffect(()=>{
             }
             
             if(curS1 === curS2 || count === 3){
-                if(count === 3){
+                if(count === 3 && curS1 !== curS2){
                     setS2((prev)=> +prev +curS2)
                 }
                 if(curS1 === curS2){
                 toast({
                     title: 'Enter Same Value',
-                    description: `${curS1} ${curS1}`,
+                    description: `${curS1}`,
                     status: 'error',
                     duration: 9000,
                     isClosable: true,
@@ -64,10 +64,10 @@ useEffect(()=>{
                 }
                 if(cur === "Player 2" ){
                   console.log(s1, s2, curS2, s2+curS2)
-                    if(s1 > s2+curS2){
+                    if(s1 > s2+curS2 && curS1 !== curS2){
                         toast({
                             title: 'Winner!',
-                            description: `Player 1`,
+                            description: `Player 1 `,
                             status: 'success',
                             duration: 9000,
                             isClosable: true,
@@ -75,16 +75,47 @@ useEffect(()=>{
                        // alert("Player 1 win")
                         setCount(7)
                     }else
-                    if(s1 < s2+curS2){
+                    if(s1 < s2+curS2 && curS1 !== curS2){
                         toast({
                             title: 'Winner!',
-                            description: "Player 2",
+                            description: "Player 2 ",
                             status: 'success',
                             duration: 9000,
                             isClosable: true,
                           })
                         setCount(7)
-                    }else{
+                    }else 
+                    if(s1 === s2+curS2){
+                      toast({
+                        title: 'Tie!',
+                        description: "Same score",
+                        status: 'success',
+                        duration: 9000,
+                        isClosable: true,
+                      })
+                    setCount(7)
+                    }else
+                    if(s1 > s2){
+                      toast({
+                          title: 'Winner!',
+                          description: `Player 1 `,
+                          status: 'success',
+                          duration: 9000,
+                          isClosable: true,
+                        })
+                     // alert("Player 1 win")
+                      setCount(7)
+                  }else
+                  if(s1 < s2){
+                      toast({
+                          title: 'Winner!',
+                          description: "Player 2",
+                          status: 'success',
+                          duration: 9000,
+                          isClosable: true,
+                        })
+                      setCount(7)
+                  }else{
                         toast({
                             title: 'Tie!',
                             description: "Same score",
